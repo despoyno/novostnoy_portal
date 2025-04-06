@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='win.css') }}">
+    <title>Добавить новость</title>
+</head>
+<body>
+    <div class="win">
+        <h1>Добавить новость</h1>
+        <form method="POST" action="/add_news">
+            <input type="text" id="title" name="title" placeholder="Введите название" required><br>
+            <textarea id="content" placeholder="Введите содержание" name="content" required></textarea><br>
+            <label for="category">Выберете категорию:</label>
+            <div class="select-wrapper">
+                <select class="sele" name="category" id="category">
+                    <option value="all" {% if category == 'all' %}selected{% endif %}>Все категории 📍</option>
+                    <option value="6" {% if category == 'science' %}selected{% endif %}>🔭Наука🔬</option>
+                    <option value="1" {% if category == 'medical' %}selected{% endif %}>🩺Медицина💊</option>
+                    <option value="2" {% if category == 'politica' %}selected{% endif %}>🌍Политика👔</option>
+                    <option value="3" {% if category == 'educate' %}selected{% endif %}>🧮Образование📚</option>
+                    <option value="4" {% if category == 'sport' %}selected{% endif %}>♟️Спорт⚽</option>
+                    <option value="5" {% if category == 'other' %}selected{% endif %}>Другое💫</option>
+                </select>
+            </div>
+            <input type="submit" value="Добавить">
+        </form>
+        <p class="meta"><a href="{{ url_for('news') }}">Вернуться к новостям</a></p>
+    </div>
+</body>
+</html>

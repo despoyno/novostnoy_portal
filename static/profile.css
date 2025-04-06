@@ -1,0 +1,157 @@
+
+/* Базовые стили */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+a {
+    text-decoration: none;
+    color: #1a1a1a;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+/* Хедер */
+.admin-header {
+    background-color: #2d2d2d;
+    color: white;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 60px;
+}
+
+.admin-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 15px 10px;
+    transition: background 0.3s;
+}
+
+.nav-link:hover {
+    background: #444;
+    border-radius: 4px;
+}
+
+/* Кнопки */
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: bold;
+}
+
+.danger-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.danger-btn:hover {
+    background: #c82333;
+}
+
+/* Контент */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-section {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.content-section h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #2d2d2d;
+}
+
+.news-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+.copy-links-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.copy-links-btn:hover {
+    background-color: #0056b3;
+}
+.news-item:last-child {
+    border-bottom: none;
+}
+
+.meta {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Форма фильтра */
+.radio-label {
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.radio-label:hover {
+    background: #f8f9fa;
+}
+
+.radio-label input {
+    margin-right: 10px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .publish-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .content-section {
+        padding: 15px;
+    }
+}

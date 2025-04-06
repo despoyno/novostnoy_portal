@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Новости</title>
+</head>
+<body>
+
+    <!-- Хедер -->
+    <header class="header">
+        <div class="container">
+            <!-- Ссылка на Telegram-бот -->
+            <a href="https://t.me/hackaton_rf_news_bot">
+                <img src="{{ url_for('static', filename='tg_bot_icon.png') }}" class="tg_bot">
+            </a>
+
+            <!-- Заголовок страницы -->
+            <h1>Новости 📰</h1>
+
+            <!-- Ссылка на профиль -->
+            <a href="{{ url_for('profile') }}">
+                <img src="{{ url_for('static', filename='profile_base_icon.jpg') }}" class="profile">
+            </a>
+            <!-- Ссылка на профиль admin -->
+                <a href="{{ url_for('admin_panel') }}">
+                <img src="{{ url_for('static', filename='admin_icon.jpg') }}" class="admin">
+                </a>
+
+            <!-- Форма фильтрации -->
+            <div class="filter-container">
+                <form method="GET" action="{{ url_for('news') }}" class="filter-form">
+                    <div class="select-group">
+                        <div class="select-wrapper">
+                            <label for="filter">Фильтр:</label>
+                            <select class="sele" name="filter" id="filter">
+                                <option value="all" {% if filter == 'all' %}selected{% endif %}>Все новости🗞️</option>
+                                <option value="today" {% if filter == 'today' %}selected{% endif %}>За сегодня🕒</option>
+                                <option value="week" {% if filter == 'week' %}selected{% endif %}>За неделю🕕</option>
+                                <option value="month" {% if filter == 'month' %}selected{% endif %}>За месяц🕘</option>
+                            </select>
+                        </div>
+
+                        <div class="select-wrapper">
+                            <label for="category">Категория:</label>
+                            <select class="sele" name="category" id="category">
+                                <option value="all" {% if category == 'all' %}selected{% endif %}>Все категории 📍</option>
+                                <option value="1" {% if category == '1' %}selected{% endif %}>🩺Медицина💊</option>
+                                <option value="2" {% if category == '2' %}selected{% endif %}>🌍Политика👔</option>
+                                <option value="3" {% if category == '3' %}selected{% endif %}>🧮Образование📚</option>
+                                <option value="4" {% if category == '4' %}selected{% endif %}>♟️Спорт⚽</option>
+                                <option value="6" {% if category == '6' %}selected{% endif %}>🔭Наука🔬</option>
+                                 <option value="5" {% if category == '5' %}selected{% endif %}>Другое💫</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="filter-btn">Применить</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container-main">
+        <!-- Макрос для отображения названия категории -->
+        {% macro category_name(code) %}
+        {% if code == 7 %}Техника
+        {% elif code == 6 %}Наука
+        {% elif code == 1 %}Медицина
+        {% elif code == 2 %}Политика
+        {% elif code == 3 %}Образование
+        {% elif code == 4 %}Спорт
+        {% else %}Другое
+        {% endif %}
+        {% endmacro %}
+
+        <!-- Список новостей -->
+        <section class="news-grid">
+            {% if news %}
+                {% for item in news %}
+                <article class="news-card" data-news-id="{{ item.id }}">
+                    <h3><a href="{{ item.link }}">{{ item.title }}</a></h3>
+                    <p class="meta">
+                        Время: {{ item.published_at or 'Не указано' }} |
+                        Категория: {{ category_name(item.category | int) }}
+                    </p>
+                    <p>{{ item.content or 'Нет описания' }}</p>
+
+                    <!-- Кнопка лайка -->
+                    <button class="like-btn" data-news-id="{{ item.id }}" data-liked="{{ item.is_liked }}">
+                        <svg class="like-icon" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.77-3.4 6.86-7.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span class="like-count">{{ item.like_count|default(0) }}</span>
+                    </button>
+                </article>
+                {% endfor %}
+            {% else %}
+                <p>Новостей нет.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <!-- JavaScript для AJAX -->
+    <script src="{{ url_for('static', filename='btn_like.js') }}"></script>
+</body>
+</html>

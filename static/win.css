@@ -1,0 +1,205 @@
+/* Центрирование контейнера */
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+    font-family: Arial, sans-serif;
+}
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.like-icon {
+    width: 20px;
+    height: 20px;
+    fill: black;
+    transition: fill 0.3s;
+}
+
+.like-icon.liked {
+    fill: red;
+}
+
+.like-count {
+    font-size: 14px;
+    color: #333;
+}
+/* Стили для окна регистрации */
+.win {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Форма */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 30px 0;
+}
+
+/* Поля ввода */
+input[type="password"] {
+    width: 90%;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input[type="email"] {
+    width: 90%;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"],
+textarea,
+.sele {
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    margin: 5px 0;
+}
+
+/* Анимация при фокусе */
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Кнопка */
+input[type="submit"] {
+    background: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background: #0056b3;
+}
+
+/* Ссылка */
+.meta {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.meta a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.meta a:hover {
+    text-decoration: underline;
+}
+
+textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* Обертка для select */
+.select-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 100%;
+}
+
+/* Селекты */
+.sele {
+    border: 2px solid #444;
+    background: white;
+    color: #3a3a3a;
+}
+
+
+/*tema*/
+/*:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: #0066cc;
+    --card-bg: #f5f5f5;
+    }
+    
+    [data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --accent-color: #4da6ff;
+    --card-bg: #2d2d2d;
+    }
+    
+    
+    
+    .theme-switcher {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    }
+    
+    .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    }
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+    }
+    
+    .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    }
+    
+    input:checked + .slider {
+    background-color: var(--accent-color);
+    }
+    
+    input:checked + .slider:before {
+    transform: translateX(26px);
+    }

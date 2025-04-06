@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    <title>Профиль пользователя</title>
+</head>
+<body>
+    <!-- Хедер -->
+    <header class="admin-header">
+        <div class="header-content">
+            <h1>Личный кабинет</h1>
+            <nav class="admin-nav">
+                <a href="{{ url_for('news') }}" class="nav-link">Вернуться к новостям</a>
+                <a href="{{ url_for('add_news') }}" class="nav-link">Опубликовать статью</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- Информация о пользователе -->
+        <section class="content-section user-info">
+            <h2>Основная информация 👤</h2>
+            <p><strong>Логин:</strong> {{ username }}</p>
+            <p><strong>ФИО:</strong> {{ full_name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Дата регистрации:</strong> {{ registration_date }}</p>
+            <p><strong>Код для тг бота:</strong>{{ uniquecode }}</p>
+        </section>
+
+        <!-- Сохраненные новости -->
+        <section class="content-section saved-news">
+            <h2>Сохранённые новости 📚</h2>
+
+            {% if liked_news %}
+                <button class="copy-links-btn" id="copy-links-btn">Скопировать все ссылки</button>
+                <div id="news-links-container">
+                    {% for news in liked_news %}
+                        <div class="news-item">
+                            <!-- Заголовок новости как гиперссылка -->
+                            <a href="{{ news.link }}" target="_blank">{{ news.title }}</a> 
+                            <em>({{ news.published_at[:10] }})</em>
+                        </div>
+                    {% endfor %}
+                </div>
+                <p class="meta">Всего сохранено: {{ liked_news|length }} новости</p>
+            {% else %}
+                <p>Вы пока не сохранили ни одной новости.</p>
+            {% endif %}
+        </section>
+
+        <!-- Безопасность 
+        <section class="content-section security">
+            <h2>Безопасность 🔒</h2>
+            <button class="button danger-btn" id="change-password-btn">Изменить пароль</button>
+        </section>
+    </div> -->
+
+    <!-- JavaScript для копирования ссылок -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const copyButton = document.getElementById('copy-links-btn');
+            const newsLinksContainer = document.getElementById('news-links-container');
+
+            copyButton.addEventListener('click', () => {
+                // Собираем все ссылки из сохраненных новостей
+                const links = Array.from(newsLinksContainer.querySelectorAll('.news-item a'))
+                    .map(link => link.href)
+                    .join('\n'); // Разделяем ссылки переносом строки
+
+                // Копируем ссылки в буфер обмена
+                navigator.clipboard.writeText(links).then(() => {
+                    alert('Ссылки успешно скопированы в буфер обмена!');
+                }).catch((error) => {
+                    console.error('Ошибка при копировании ссылок:', error);
+                    alert('Не удалось скопировать ссылки.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

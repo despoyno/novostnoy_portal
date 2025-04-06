@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='win.css') }}">
+    <title>Регистрация</title>
+</head>
+<body>
+    <div class="win">
+        <h1>Регистрация</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('register') }}">
+            <!-- Поле для ввода ФИО -->
+            <input type="text" id="full_name" name="full_name" required placeholder="Введите Ник"><br>
+            
+            <!-- Поле для ввода email -->
+            <input type="email" id="email" name="email" required placeholder="Введите Email"><br>
+            
+            <!-- Существующие поля -->
+            <input type="text" id="username" name="username" required placeholder="Введите Логин"><br>
+            <input type="password" id="password" name="password" required placeholder="Введите Пароль"><br>
+            
+            <!-- Кнопка отправки формы -->
+            <input type="submit" value="Зарегистрироваться">
+        </form>
+        <p class="meta">Уже есть аккаунт? <a href="{{ url_for('login') }}">Войдите</a></p>
+    </div>
+</body>
+</html>

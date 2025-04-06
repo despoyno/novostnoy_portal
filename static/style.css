@@ -1,0 +1,255 @@
+/* Базовые стили */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+a {
+    text-decoration: none;
+    color: #1a1a1a;
+}
+
+a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Хедер */
+.header {
+    background-color: #2d2d2d;
+    color: white;
+    padding: 4px 0;
+}
+
+.header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+}
+
+.header h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+/* Контейнер фильтров */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Форма фильтрации */
+.filter-form {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Группа select-элементов */
+.select-group {
+    display: flex;
+    gap: 15px;
+}
+
+/* Обертка для select */
+.select-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+/* Селекты */
+.sele {
+    padding: 10px 15px;
+    border: 2px solid #444;
+    border-radius: 8px;
+    background: #3a3a3a;
+    color: white;
+    min-width: 180px;
+    transition: border-color 0.3s;
+}
+
+.sele:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Кнопка */
+.filter-btn {
+    margin-top: 30px;
+    padding: 12px 25px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.filter-btn:hover {
+    background: #0056b3;
+}
+
+/* Основной контент */
+.container-main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.news-grid {
+    display: grid;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.news-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.news-card h3 {
+    margin: 1rem 1rem 0.5rem;
+    font-size: 1.2rem;
+}
+
+.news-card p {
+    margin: 0.5rem 1rem 1rem;
+    color: #666;
+}
+
+.meta {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .filter-form {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .select-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .sele {
+        min-width: 250px;
+    }
+    
+    .filter-btn {
+        width: 250px;
+    }
+}
+
+/*иконки header*/
+.tg_bot, .profile, .admin {
+    position: absolute;
+    transition: transform 0.3s;
+}
+
+.tg_bot {
+    left: 20px;
+    width: 55px;
+    height: 43px;
+    top: 20px;
+}
+
+.profile {
+    right: 20px;
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    top: 20px;
+}
+
+.admin {
+    right: 20px;
+    top: 122px;
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+}
+
+/* Анимация при наведении */
+.tg_bot:hover, .profile:hover, .admin:hover {
+    transform: scale(1.1);
+}
+
+/* Добавьте в ваш CSS */
+.like-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 15px;
+}
+
+.like-btn.liked {
+    background: #4CAF50;
+    color: white;
+}
+
+.like-icon {
+    width: 24px;
+    height: 24px;
+    fill: #666;
+    transition: fill 0.3s;
+}
+
+.like-btn.liked .like-icon {
+    fill: white;
+}
+
+.like-count {
+    font-size: 14px;
+    font-weight: bold;
+}
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.like-icon {
+    width: 20px;
+    height: 20px;
+    fill: black;
+    transition: fill 0.3s;
+}
+
+.like-icon.liked {
+    fill: red;
+}
+
+.like-count {
+    font-size: 14px;
+    color: #333;
+}
+/* Для адаптивности */
+@media (max-width: 768px) {
+    .like-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
